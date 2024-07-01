@@ -10,7 +10,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/eks"
 	"github.com/aws/aws-sdk-go-v2/service/iam"
-	"github.com/aws/aws-sdk-go-v2/service/kms"
 	aws2 "github.com/gruntwork-io/terratest/modules/aws"
 
 	"github.com/gruntwork-io/terratest/modules/logger"
@@ -23,7 +22,7 @@ func TestTerraformEksJX(t *testing.T) {
 
 	tfOptions := &terraform.Options{
 		// The path to where our Terraform code is located
-		TerraformDir: "../examples/jx3",
+		TerraformDir: "../examples/basic",
 		NoColor:      true,
 		Logger:       logger.Discard,
 	}
