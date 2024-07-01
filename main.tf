@@ -116,9 +116,8 @@ module "cluster" {
 // See https://github.com/bank-vaults/bank-vaults
 // ----------------------------------------------------------------------------
 module "vault" {
+  count          = var.use_vault && !local.external_vault && var.install_vault
   source         = "./modules/vault"
-  external_vault = local.external_vault
-  use_vault      = var.use_vault
 }
 
 // ----------------------------------------------------------------------------
