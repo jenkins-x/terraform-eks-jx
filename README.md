@@ -79,7 +79,7 @@ A default Jenkins X ready cluster can be provisioned by creating a _main.tf_ fil
 
 ```terraform
 module "eks-jx" {
-  source = "jenkins-x/eks-jx/aws"
+  source = "github.com/jenkins-x/terraform-aws-eks-jx"
 }
 
 output "jx_requirements" {
@@ -101,7 +101,7 @@ If you do not want Terraform to create a new IAM user or you do not have permiss
 
 ```terraform
 module "eks-jx" {
-  source     = "jenkins-x/eks-jx/aws"
+  source     = "github.com/jenkins-x/terraform-aws-eks-jx"
 }
 ```
 
@@ -333,7 +333,7 @@ The following is a list of considerations for a production use case.
 
   ```terraform
   module "eks-jx" {
-    source  = "jenkins-x/eks-jx/aws"
+    source  = "github.com/jenkins-x/terraform-aws-eks-jx"
     version = "1.0.0"
     # insert your configuration
   }
@@ -391,7 +391,7 @@ These values can be adjusted by using the variables `lt_desired_nodes_per_subnet
 
 ```terraform
 module "eks-jx" {
-  source                               = "jenkins-x/eks-jx/aws"
+  source                               = "github.com/jenkins-x/terraform-aws-eks-jx"
   enable_worker_groups_launch_template = true
   allowed_spot_instance_types          = ["m5.large", "m5a.large", "m5d.large", "m5ad.large", "t3.large", "t3a.large"]
   lt_desired_nodes_per_subnet          = 2
@@ -411,7 +411,7 @@ Once you've scaled down to zero nodes for the original worker group, and your wo
 
 ```terraform
 module "eks-jx" {
-  source                               = "jenkins-x/eks-jx/aws"
+  source                               = "github.com/jenkins-x/terraform-aws-eks-jx"
   enable_worker_group                  = false
   enable_worker_groups_launch_template = true
   allowed_spot_instance_types          = ["m5.large", "m5a.large", "m5d.large", "m5ad.large", "t3.large", "t3a.large"]
@@ -433,7 +433,7 @@ In order to provision EKS node groups create a _main.tf_ with the following cont
 
 ```terraform
 module "eks-jx" {
-  source  = "jenkins-x/eks-jx/aws"
+  source  = "github.com/jenkins-x/terraform-aws-eks-jx"
   enable_worker_group = false
 }
 
@@ -450,7 +450,7 @@ A single node group will be created by default when using EKS node groups. Suppl
 
 ```terraform
 module "eks-jx" {
-  source  = "jenkins-x/eks-jx/aws"
+  source  = "github.com/jenkins-x/terraform-aws-eks-jx"
   enable_worker_group = false
   node_groups_managed = {
     node-group-name = {
@@ -484,7 +484,7 @@ resource "aws_launch_template" "foo" {
 }
 
 module "eks-jx" {
-  source  = "jenkins-x/eks-jx/aws"
+  source  = "github.com/jenkins-x/terraform-aws-eks-jx"
   enable_worker_group = false
   node_groups_managed = {
     node-group-name = {
@@ -562,7 +562,7 @@ resource "aws_iam_user" "patrick" {
 }
 
 module "eks-jx" {
-  source  = "jenkins-x/eks-jx/aws"
+  source  = "github.com/jenkins-x/terraform-aws-eks-jx"
   map_users = [
     {
       userarn  = aws_iam_user.patrick.arn
@@ -579,7 +579,7 @@ To map additional roles to the AWS Auth ConfigMap, use `map_roles`:
 
 ```terraform
 module "eks-jx" {
-  source  = "jenkins-x/eks-jx/aws"
+  source  = "github.com/jenkins-x/terraform-aws-eks-jx"
   map_roles = [
     {
       rolearn  = "arn:aws:iam::66666666666:role/role1"
@@ -596,7 +596,7 @@ To map additional accounts to the AWS Auth ConfigMap, use `map_accounts`:
 
 ```terraform
 module "eks-jx" {
-  source  = "jenkins-x/eks-jx/aws"
+  source  = "github.com/jenkins-x/terraform-aws-eks-jx"
   map_accounts = [
     "777777777777",
     "888888888888",
